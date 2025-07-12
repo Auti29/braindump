@@ -11,7 +11,7 @@ const userSchema = new Schema({
 const contentSchema = new Schema({
     type: {type:String,  enum:contentTypes, requried: true, }, 
     link: {type: String, required: true}, 
-    title:{type:String, required:true}, 
+    title:{type:String}, 
     tags:[{type:mongoose.Types.ObjectId, ref:'Tag'}], 
     userId: {type:mongoose.Types.ObjectId, ref:'User'}, 
 })
