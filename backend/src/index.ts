@@ -1,10 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import bcrypt from "bcrypt";
-import { UserModel, ContentModel } from "./db";
+import bcrypt, { hash } from "bcrypt";
+import { UserModel, ContentModel, LinkModel } from "./db";
 import {userMiddleware} from "./middleware"
 import jwt from 'jsonwebtoken';
+import { getRandomString } from "./utils";
 const app = express();
 // const router = express.Router();
 dotenv.config();
@@ -143,11 +144,71 @@ app.delete('/api/v1/content', userMiddleware, async (req, res) => {
 
 
 
-app.post('/api/v1/share', (req, res) => {
+app.post('/api/v1/share', userMiddleware, async (req, res) => {
+    const share = req.body.share;
+    const hash = getRandomString(10);
+    if(share){
+        const existingHash =await  LinkModel.findOne( {
+            hash
+        }
+        )
+        if(existingHash){
+            return res.json({
+                message: "hash exists", 
+                hash: existingHash.hash
+            })
+        }
+
+
+        await LinkModel.create({
+        // @ts-ignore
+         userId: req.userId, 
+         hash
+        })
+            return res.json({
+        message: "sharable link updated", 
+        hash
+    })
+    }
+    else{
+        await LinkModel.deleteOne({
+        // @ts-ignore
+            userId: req.userId
+        });
+        return res.json({
+            message: "link deleted"
+        })
+    }
+
 
 })
-app.get('/api/v1/:shareLink' , (req, res) => {
 
+app.get('/api/v1/brain/:shareLink' , async (req, res) => {
+    const hash = req.params.shareLink;
+
+    const link = await LinkModel.findOne({
+        hash
+    })
+
+    if(!link){
+        return res.status(411).json({
+            message: "no content to show!"
+        });
+    }
+
+    const content = await ContentModel.find({
+        userId: link.userId
+    }).populate("userId");
+
+    if(!content){
+        return res.json({
+            message: "no content to show!"
+        })
+    }
+    
+    return res.status(200).json({
+        content
+    });
 })
 
 
