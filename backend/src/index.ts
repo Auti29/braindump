@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import bcrypt, { hash } from "bcrypt";
+import bcrypt from "bcrypt";
 import { UserModel, ContentModel, LinkModel } from "./db";
 import {userMiddleware} from "./middleware"
 import jwt from 'jsonwebtoken';
