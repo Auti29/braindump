@@ -7,5 +7,5 @@ export interface IconProps{
 export const iconSize: Record<IconProps["size"], string> = {
     "sm": "size-2", 
     "md": "size-4", 
-    "lg": "size-6"
+    "lg": "size-5"
 }
