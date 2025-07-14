@@ -4,8 +4,8 @@ interface ButtonProps{
     variant : "primary" | "secondary";
     size: "sm" | "md" | "lg";
     text: string;
-    startIcon: ReactElement;
-    endIcon?: string;
+    startIcon?: ReactElement;
+    endIcon?: ReactElement;
     onClick?: () => void;
 }
 
@@ -23,6 +23,6 @@ const sizeStyles: Record<ButtonProps["size"], string> = {
 
 export const Button = (props: ButtonProps) => {
     return (
-        <button className={`${variantStyles[props.variant]} ${sizeStyles[props.size]} flex justify-center align-middle rounded-md`}>{props.startIcon ? <div className="pr-2 pt-1">{props.startIcon}</div> : null}{props.text}{props.endIcon? <div className="pl-2 pt-1">{props.endIcon}</div>: null}</button>
+        <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${sizeStyles[props.size]} flex justify-center align-middle rounded-md cursor-pointer`}>{props.startIcon ? <div className="pr-2 pt-1">{props.startIcon}</div> : null}{props.text}{props.endIcon? <div className="pl-2 pt-1">{props.endIcon}</div>: null}</button>
     )
 }

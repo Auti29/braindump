@@ -1,15 +1,19 @@
 import './App.css'
 import { Plusicon } from './components/icons/Plusicon'
 import { Shareicon } from './components/icons/Shareicon'
-import { Button } from './components/ui/Button'
-import { Card } from './components/ui/Card'
+import { Button } from './components/Button'
+import { Card } from './components/Card'
+import { CreateContentModal } from './components/CreateContentModal'
+import { useState } from 'react'
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className='p-3'>
+      <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)}/>
     <div className='flex justify-end'>
       <div className='m-2'>
-      <Button startIcon={<Plusicon size="md"/>} size ="md" variant= "primary" text="Add Content"/>
+      <Button startIcon={<Plusicon size="md"/>} size ="md" variant= "primary" text="Add Content" onClick={() => setModalOpen(true)}/>
       </div>
       <div className='m-2'>
       <Button startIcon={<Shareicon size="md"/>} size="md" variant= "secondary" text="Share Brain"/>
