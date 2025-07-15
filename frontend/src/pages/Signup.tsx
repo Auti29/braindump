@@ -2,12 +2,13 @@ import { useRef } from "react"
 import { Button } from "../components/Button"
 import { Input } from "../components/Input"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const BE_URL = import.meta.env.VITE_BE_URL;
 
 export const Signup = () => {
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-
+    const navigate = useNavigate();
     async function handleSignup() {
         const username = usernameRef.current?.value;
         const password = passwordRef.current?.value;
@@ -17,6 +18,7 @@ export const Signup = () => {
             password
         });
         alert("You have signed up!!");
+        navigate("/signin")
     }
 
     return (
