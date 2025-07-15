@@ -7,6 +7,7 @@ interface ButtonProps{
     startIcon?: ReactElement;
     endIcon?: ReactElement;
     onClick?: () => void;
+    loading?:boolean;
 }
 
 
@@ -23,6 +24,7 @@ const sizeStyles: Record<ButtonProps["size"], string> = {
 
 export const Button = (props: ButtonProps) => {
     return (
-        <button onClick={props.onClick} className={`${variantStyles[props.variant]} ${sizeStyles[props.size]} flex justify-center align-middle rounded-md cursor-pointer`}>{props.startIcon ? <div className="pr-2 pt-1">{props.startIcon}</div> : null}{props.text}{props.endIcon? <div className="pl-2 pt-1">{props.endIcon}</div>: null}</button>
+        <button disabled={props.loading} onClick={props.onClick} 
+        className={`${variantStyles[props.variant]} ${sizeStyles[props.size]} flex justify-center align-middle rounded-md cursor-pointer ${props.loading ? " opacity-45" : ""}`}>{props.startIcon ? <div className="pr-2 pt-1">{props.startIcon}</div> : null}{props.text}{props.endIcon? <div className="pl-2 pt-1">{props.endIcon}</div>: null}</button>
     )
 }
