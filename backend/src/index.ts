@@ -6,6 +6,7 @@ import { UserModel, ContentModel, LinkModel } from "./db";
 import {userMiddleware} from "./middleware"
 import jwt from 'jsonwebtoken';
 import { getRandomString } from "./utils";
+import cors from "cors";
 const app = express();
 // const router = express.Router();
 dotenv.config();
@@ -13,6 +14,7 @@ const PORT = process.env.BE_PORT;
 const DB_URL = process.env.DB_URL;
 const JWT_SECRET = process.env.JWT_SECRET;
 
+app.use(cors());
 app.use(express.json());
 
 app.post('/api/v1/signup', async (req, res) => {
