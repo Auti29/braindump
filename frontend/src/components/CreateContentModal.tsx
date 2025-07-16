@@ -28,6 +28,7 @@ export const CreateContentModal = ({open, onClose}: {open:boolean, onClose: () =
             Authorization: localStorage.getItem("token")
         }
         })
+       onClose(); 
     } 
 
 return (
@@ -37,16 +38,16 @@ return (
             <div className="flex flex-col justify-center">
                 <span className="bg-white opacity-100 p-5 rounded-md ">
                     <div className="flex justify-end mb-2">   
-                        <div className=" cursor-pointer text-red-600" onClick={onClose}>
+                        <button className="cursor-pointer bg-white text-red-600 h-7 text-center" onClick={onClose}>
                             <CrossIcon size="lg"/>
-                            </div>                            
+                            </button>                            
                     </div>
                     <div className="flex flex-col">
                         <Input reference={titleRef} placeholder="Title"/>
                         <Input reference={linkRef} placeholder="Link"/>
                     </div>
                     <div>
-                    <h1 className="font-bold ml-3">type:</h1>
+                    <h1 className="font-bold ml-3 mt-3">Type:</h1>
                     <div className="flex justify-center mb-3 p-3 gap-4">
                         <Button onClick={() => setType(ContentlinkType.Youtube)} variant={type === "youtube" ? "primary" : "secondary"} text="Youtube" size="sm"/>
                         <Button onClick={() => setType(ContentlinkType.Twitter)} variant={type === "twitter" ? "primary" : "secondary"} text="Twitter" size="sm"/>

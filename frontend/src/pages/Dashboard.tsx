@@ -6,9 +6,14 @@ import { CreateContentModal } from '../components/CreateContentModal'
 import { useState } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { useContent } from '../hooks/useContent'
+import axios from 'axios'
+const BE_URL = import.meta.env.VITE_BE_URL;
+
+
+
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const contents = useContent();
+  const contents = useContent(modalOpen);
   return (
     <div className=''>
       <Sidebar />
@@ -18,8 +23,23 @@ export function Dashboard() {
       <div className='m-2'>
       <Button startIcon={<Plusicon size="md"/>} size ="md" variant= "primary" text="Add Content" onClick={() => setModalOpen(true)}/>
       </div>
-      <div className='m-2'>
-      <Button startIcon={<Shareicon size="md"/>} size="md" variant= "secondary" text="Share Brain"/>
+      <div className='m-2 cursor-pointer'>
+      <Button 
+      onClick={async() => {
+        const response = await axios.post(`${BE_URL}/api/v1/share`, {
+          share: true
+        }, {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        });
+
+        const shareUrl = `http://localhost:5173/share/${response.data.hash}`;
+
+        alert(`brain url: ${shareUrl}`);
+
+      }}
+      startIcon={<Shareicon size="md"/>} size="md" variant= "secondary" text="Share Brain"/>
       </div>
     </div>
 

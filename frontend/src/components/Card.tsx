@@ -1,4 +1,5 @@
 import { DeleteIcon } from "./icons/DeleteIcon"
+import { GotoArrow } from "./icons/GotoArrow"
 import { Shareicon } from "./icons/Shareicon"
 import { TwitterIcon } from "./icons/TwitterIcon"
 import { YoutubeIcon } from "./icons/YoutubeIcon"
@@ -26,7 +27,7 @@ export const Card = ({title, link, type}: CardProps) => {
                 <div className="flex text-slate-400 pr-1">
                     <div className="mr-2">
                     <a href={link} target="_blank">
-                        {                    <Shareicon size="lg" />
+                        {                    <GotoArrow size="lg" />
                         }
                     </a>
                     </div>
