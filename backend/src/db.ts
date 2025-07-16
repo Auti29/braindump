@@ -1,6 +1,6 @@
 import mongoose, {model, Schema} from "mongoose";
 
-const contentTypes = ["image", 'video', 'article', 'audio'];
+const contentTypes = ['youtube', 'twitter'];
 
 const userSchema = new Schema({
     username: {type: String, 

@@ -8,11 +8,11 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 export function userMiddleware(req: Request, res: Response, next: NextFunction){
     const header = req.headers.authorization;
-    if(!header || !header.startsWith("Bearer ")){
+    if(!header){
         return res.status(401).json({ message: "auth header missing!" });
     }
 
-    const token = header.split(" ")[1];
+    const token = header;
     if(!token){
                 return res.status(401).json({ message: "token missing!" });
     }

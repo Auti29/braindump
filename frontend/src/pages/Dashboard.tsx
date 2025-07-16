@@ -5,9 +5,10 @@ import { Card } from '../components/Card'
 import { CreateContentModal } from '../components/CreateContentModal'
 import { useState } from 'react'
 import { Sidebar } from '../components/Sidebar'
-
+import { useContent } from '../hooks/useContent'
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
+  const contents = useContent();
   return (
     <div className=''>
       <Sidebar />
@@ -23,10 +24,12 @@ export function Dashboard() {
     </div>
 
     {/* cards */}
-    <div className='flex flex-wrap gap-4 mt-3'>
-      <Card type ="twitter" title='twitter' link='https://twitter.com/username/status/807811447862468608'/>
-
-      <Card type ="youtube" title='youtube' link='https://www.youtube.com/watch?v=bJs2xB_Inxw'/>
+    <div className='flex flex-wrap gap-5 mt-3 justify-start'>
+      {contents.map(({type, link,  title}) => {
+          return (
+            <Card type ={type} title={title} link={link}/>
+          )
+      })}
       </div>
     </div>
     </div>

@@ -1,4 +1,7 @@
+import { DeleteIcon } from "./icons/DeleteIcon"
 import { Shareicon } from "./icons/Shareicon"
+import { TwitterIcon } from "./icons/TwitterIcon"
+import { YoutubeIcon } from "./icons/YoutubeIcon"
 
 export interface CardProps {
     title: string, 
@@ -9,29 +12,33 @@ export interface CardProps {
 
 export const Card = ({title, link, type}: CardProps) => {
     return (
-        <div>
-            <div className="border-slate-200 border max-w-80 bg-white p-2 shadow-md rounded-md">
+            <div className=" border-slate-200 border h-80 w-90 bg-white p-2 shadow-md rounded-md mt-3 overflow-x-clip overflow-y-auto ">
             <div className="flex justify-between items-center text-center pl-1">
                 <div  className="flex items-center font-bold text-gray-600">
-                <Shareicon size="lg"/>
-                <p className="ml-2 text-lg">{title}</p>
+                <div className="ml-2">
+                    {type === "youtube" &&
+                <YoutubeIcon size="xl"/>}
+                    {type === "twitter" &&
+                <TwitterIcon size="xl"/>}
+                </div>
+                <p className="ml-1 text-lg">{title}</p>
                 </div>
                 <div className="flex text-slate-400 pr-1">
-                    <div className="mr-1">
+                    <div className="mr-2">
                     <a href={link} target="_blank">
                         {                    <Shareicon size="lg" />
                         }
                     </a>
                     </div>
-                    <div>
-                    <Shareicon size="lg" />
+                    <div className="cursor-pointer">
+                    <DeleteIcon size="lg" />
                     </div>
                 </div>
             </div>
 
-            <div className="w-full mt-3.5 min-h-40">
+            <div className="flex justify-center w-full mt-3.5 min-h-40">
                 {type === "youtube" &&
-                <iframe src={link.replace("watch", "embed").replace("?v=", "/")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
+                <iframe className="object-cover w-90 h-50" src={link.replace("watch", "embed").replace("?v=", "/")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
 
 
                 {type === "twitter" && 
@@ -40,6 +47,5 @@ export const Card = ({title, link, type}: CardProps) => {
                 </blockquote>}
             </div>
             </div>
-        </div>
     )
 }
