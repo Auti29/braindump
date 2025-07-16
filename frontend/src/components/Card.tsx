@@ -1,6 +1,5 @@
 import { DeleteIcon } from "./icons/DeleteIcon"
-import { GotoArrow } from "./icons/GotoArrow"
-import { Shareicon } from "./icons/Shareicon"
+import { GotoArrow } from "./icons/GotoArrowIcon"
 import { TwitterIcon } from "./icons/TwitterIcon"
 import { YoutubeIcon } from "./icons/YoutubeIcon"
 
