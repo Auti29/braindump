@@ -8,3 +8,10 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>,
 )
+
+
+//todo
+// implement tweets and videos filter from sidebar
+//implement access after sharing the link
+//add more content features 
+//add tags and filtering based on tags 
