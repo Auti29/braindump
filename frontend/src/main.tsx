@@ -18,3 +18,4 @@ createRoot(document.getElementById('root')!).render(
 //add tags and filtering based on tags 
 //add superemory ai 
 //add responsiveness
+//lazy load tweets

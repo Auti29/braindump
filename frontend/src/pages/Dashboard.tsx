@@ -13,7 +13,22 @@ const BE_URL = import.meta.env.VITE_BE_URL;
 
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const contents = useContent(modalOpen);
+  const [refreshFlag, setRefreshFlag] = useState(false);
+  const contents = useContent(modalOpen, refreshFlag);
+
+
+  const handleDelete= async (id: string) => {
+    const contentId = id;
+    const response = await axios.delete(`${BE_URL}/api/v1/content/${contentId}`, {
+      headers:{
+            Authorization: localStorage.getItem("token")
+        }
+    });
+
+    alert(response.data);
+    setRefreshFlag(true);
+    }
+
   return (
     <div className=''>
       <Sidebar />
@@ -50,9 +65,11 @@ export function Dashboard() {
 
     {/* cards */}
     <div className='flex flex-wrap gap-5 mt-1.5 justify-start'>
-      {contents.map(({type, link,  title}) => {
+      {contents.map(({_id, type, link,  title}, i) => {
           return (
-            <Card type ={type} title={title} link={link}/>
+            <div key={i}>
+            <Card id={_id} onDelete={handleDelete} type ={type} title={title} link={link}/>
+            </div>
           )
       })}
       </div>

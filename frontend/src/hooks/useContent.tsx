@@ -3,7 +3,7 @@ import axios from "axios";
 const BE_URL = import.meta.env.VITE_BE_URL;
 
 
-export function useContent(refreshKey: boolean){
+export function useContent(refreshKey: boolean, refreshFlag: boolean){
     const [contents, setContents] = useState([]);
     
     useEffect(() => {
@@ -18,7 +18,7 @@ export function useContent(refreshKey: boolean){
         } 
 
     fetchContent();
-    }, [refreshKey]);
+    }, [refreshKey, refreshFlag]);
 
     return contents;
 }

@@ -132,8 +132,9 @@ app.get('/api/v1/content', userMiddleware, async (req, res) => {
     })
 
 });
-app.delete('/api/v1/content', userMiddleware, async (req, res) => {
-    const contentId = req.body.contentId
+
+app.delete('/api/v1/content/:contentId', userMiddleware, async (req, res) => {
+    const contentId = req.params.contentId
 
     await ContentModel.deleteMany({
         _id: contentId,
@@ -218,7 +219,9 @@ app.get('/api/v1/brain/:shareLink' , async (req, res) => {
 
 
 async function main(){
-    // @ts-ignore
+    if(!DB_URL){
+        return;
+    }
     await mongoose.connect(DB_URL);
     app.listen(PORT);
 }

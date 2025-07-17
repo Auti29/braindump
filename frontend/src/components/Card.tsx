@@ -6,11 +6,13 @@ import { YoutubeIcon } from "./icons/YoutubeIcon"
 export interface CardProps {
     title: string, 
     link: string, 
-    type: "youtube" | "twitter"
+    type: "youtube" | "twitter", 
+    onDelete: (id: string) => void, 
+    id: string
 }
 
+export const Card = ({title, link, type, onDelete, id}: CardProps) => { 
 
-export const Card = ({title, link, type}: CardProps) => {
     return (
             <div className=" border-slate-200 border h-80 w-90 bg-white p-2 shadow-md rounded-md mt-3 overflow-x-clip overflow-y-auto ">
             <div className="flex justify-between items-center text-center pl-1 mt-1">
@@ -21,7 +23,7 @@ export const Card = ({title, link, type}: CardProps) => {
                     {type === "twitter" &&
                 <TwitterIcon size="xl"/>}
                 </div>
-                <p className="ml-1 text-lg">{title}</p>
+                <p className="text-lg">{title}</p>
                 </div>
                 <div className="flex text-slate-400 pr-1">
                     <div className="mr-2">
@@ -30,9 +32,11 @@ export const Card = ({title, link, type}: CardProps) => {
                         }
                     </a>
                     </div>
-                    <div className="cursor-pointer">
+                    <button 
+                    onClick={() => onDelete(id)}
+                    className="cursor-pointer">
                     <DeleteIcon size="lg" />
-                    </div>
+                    </button>
                 </div>
             </div>
 
