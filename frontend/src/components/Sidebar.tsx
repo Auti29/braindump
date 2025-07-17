@@ -1,3 +1,4 @@
+import { AllcontentsIcon } from "./icons/AllcontentsIcon";
 import { LogoIcon } from "./icons/LogoIcon";
 import { TwitterIcon } from "./icons/TwitterIcon";
 import { YoutubeIcon } from "./icons/YoutubeIcon";
@@ -11,6 +12,7 @@ export function Sidebar() {
                 <Logo icon={<LogoIcon size="2xl"/>}/>
             </div>
             <div>
+                <SidebarItem text="All Contents" icon={<AllcontentsIcon size="xl"/>}/>
                 <SidebarItem text="Tweets" icon={<TwitterIcon size="xl"/>}/>
                 <SidebarItem text="Videos" icon={<YoutubeIcon size="xl"/>}/>
             </div>

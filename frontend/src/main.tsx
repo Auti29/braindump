@@ -17,3 +17,4 @@ createRoot(document.getElementById('root')!).render(
 //add more content features 
 //add tags and filtering based on tags 
 //add superemory ai 
+//add responsiveness
