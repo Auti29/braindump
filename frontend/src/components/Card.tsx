@@ -13,7 +13,7 @@ export interface CardProps {
 export const Card = ({title, link, type}: CardProps) => {
     return (
             <div className=" border-slate-200 border h-80 w-90 bg-white p-2 shadow-md rounded-md mt-3 overflow-x-clip overflow-y-auto ">
-            <div className="flex justify-between items-center text-center pl-1">
+            <div className="flex justify-between items-center text-center pl-1 mt-1">
                 <div  className="flex items-center font-bold text-gray-600">
                 <div className="ml-2">
                     {type === "youtube" &&

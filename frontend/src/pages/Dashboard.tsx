@@ -19,7 +19,11 @@ export function Dashboard() {
       <Sidebar />
     <div className='p-5 min-h-screen bg-gray-200 ml-72'>
       <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)}/>
-    <div className='flex justify-end w-full'>
+    <div className='flex justify-between w-full'>
+        <div className='flex items-center font-bold text-2xl ml-2.5 text-gray-600'>
+          <h1>All Contents</h1>
+        </div>
+      <div className='flex'>
       <div className='m-2'>
       <Button startIcon={<Plusicon size="md"/>} size ="md" variant= "primary" text="Add Content" onClick={() => setModalOpen(true)}/>
       </div>
@@ -41,10 +45,11 @@ export function Dashboard() {
       }}
       startIcon={<Shareicon size="md"/>} size="md" variant= "secondary" text="Share Brain"/>
       </div>
+      </div>
     </div>
 
     {/* cards */}
-    <div className='flex flex-wrap gap-5 mt-3 justify-start'>
+    <div className='flex flex-wrap gap-5 mt-1.5 justify-start'>
       {contents.map(({type, link,  title}) => {
           return (
             <Card type ={type} title={title} link={link}/>
