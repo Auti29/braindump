@@ -15,7 +15,7 @@ export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const contents = useContent(modalOpen, refreshFlag);
-
+  const [filterType, setFilterType] = useState<string>("All Contents");
 
   const handleDelete= async (id: string) => {
     const contentId = id;
@@ -31,12 +31,14 @@ export function Dashboard() {
 
   return (
     <div className=''>
-      <Sidebar />
+      <Sidebar onClick={(text) => {
+        setFilterType(text);
+      }} />
     <div className='p-5 min-h-screen bg-gray-200 ml-72'>
       <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)}/>
     <div className='flex justify-between w-full'>
-        <div className='flex items-center font-bold text-2xl ml-2.5 text-gray-600'>
-          <h1>All Contents</h1>
+        <div className='flex items-center font-bold text-2xl ml-2.5 text-gray-600 '>
+          <h1>{filterType}</h1>
         </div>
       <div className='flex'>
       <div className='m-2'>
@@ -65,13 +67,35 @@ export function Dashboard() {
 
     {/* cards */}
     <div className='flex flex-wrap gap-5 mt-1.5 justify-start'>
-      {contents.map(({_id, type, link,  title}, i) => {
-          return (
-            <div key={i}>
-            <Card id={_id} onDelete={handleDelete} type ={type} title={title} link={link}/>
-            </div>
-          )
-      })}
+      {
+      (filterType === "All Contents") ?
+        contents.map(({_id, type, link,  title}, i) => {
+            return (
+              <div key={i}>
+              <Card id={_id} onDelete={handleDelete} type ={type} title={title} link={link}/>
+              </div>
+            )
+        }) : 
+        
+        contents.map(({_id, type, link,  title}, i) => { 
+          if(filterType === "Tweets" && type === "twitter"){
+            return (
+              <div key={i}>
+              <Card id={_id} onDelete={handleDelete} type ={type} title={title} link={link}/>
+              </div>
+            )
+          }
+          if(filterType === "Videos" && type === "youtube"){
+            return (
+              <div key={i}>
+              <Card id={_id} onDelete={handleDelete} type ={type} title={title} link={link}/>
+              </div>
+            )
+          }
+        })
+
+
+      }
       </div>
     </div>
     </div>

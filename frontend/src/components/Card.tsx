@@ -8,7 +8,7 @@ export interface CardProps {
     link: string, 
     type: "youtube" | "twitter", 
     onDelete: (id: string) => void, 
-    id: string
+    id: string, 
 }
 
 export const Card = ({title, link, type, onDelete, id}: CardProps) => { 

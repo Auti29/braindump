@@ -11,11 +11,10 @@ createRoot(document.getElementById('root')!).render(
 
 
 //todo
-// implement tweets and videos filter from sidebar
 //implement access after sharing the link
 //dynamic layout of cards 
 //add more content types => google docs 
 //add tags and filtering based on tags 
-//add superemory ai 
+//add superemory ai / vector db
 //add responsiveness
 //lazy load tweets
